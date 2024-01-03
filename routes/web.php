@@ -15,11 +15,17 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+
+Route::get('/register', [AuthController::class, 'regis'])->name('register');
+Route::post('/store', [AuthController::class, 'store'])->name('authregister');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/', function () {
-    return redirect(route('auth.login'));
+    return redirect(route('login'));
 });
+Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 
 
 Route::resource('/student', StudentController::class);
